@@ -1,0 +1,29 @@
+enable
+conf t
+hostname RT-01
+interface g0/0
+no shutdown
+interface g0/0.10
+encapsulation dot1q 10
+ip address 192.168.1.1 255.255.255.0
+description GATEWAY VLAN 10
+interface g0/0.20
+encapsulation dot1q 20
+ip address 192.168.2.1 255.255.255.0
+description GATEWAY VLAN 20
+interface g0/0.100
+encapsulation dot1q 100
+ip address 192.168.254.1 255.255.255.0
+description GATEWAY VLAN 100
+exit
+enable secret SenhadaEnable
+username joaoabreu privilege 15 secret joaoabreu
+ip domain-name rede.local
+crypto key generate rsa general-key modulus 1024
+line console 0
+login local
+exit
+line vty 0 15
+login local
+transport input ssh
+do wr
