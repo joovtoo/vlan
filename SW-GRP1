@@ -10,11 +10,11 @@ name VLAN100
 interface f0/1
 switchport mode access
 switchport access vlan 10
-description PC-03
+description PC-01
 interface f0/2
 switchport mode access
 switchport access vlan 20
-description PC-04
+description PC-02
 interface f0/24
 switchport mode trunk
 switchport trunk native vlan 99
