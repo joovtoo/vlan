@@ -1,0 +1,39 @@
+enable
+conf t
+hostname SW-GRP01
+vlan 10
+name VLAN10
+vlan 20
+name VLAN20
+vlan 100
+name VLAN100
+interface f0/1
+switchport mode access
+switchport access vlan 10
+description PC-03
+interface f0/2
+switchport mode access
+switchport access vlan 20
+description PC-04
+interface f0/24
+switchport mode trunk
+switchport trunk native vlan 99
+switchport trunk allowed vlan 10,20,99,100
+interface vlan 100
+ip address 192.168.254.253 255.255.255.0
+description INTERFACE DE GERENCIAMENTO
+no shutdown
+exit
+enable secret SenhadaEnable
+username joaoabreu privilege 15 secret joaoabreu
+ip domain-name rede.local
+crypto key generate rsa general-key modulus 1024
+line console 0
+login local
+exit
+line vty 0 15
+login local
+transport input ssh
+exit
+ip default-gateway 192.168.254.1
+do wr
